@@ -1,4 +1,5 @@
-OLED_ENABLE = yes # CONFIG-ME "yes" or "no" depending if you have oleds
+OLED_ENABLE = no # CONFIG-ME "yes" or "no" depending if you have oleds
+RGB_MATRIX_ENABLE = no # CONFIG-ME "yes" or "no" depending if you have RGB
 
 VIA_ENABLE = yes
 VIAL_ENABLE = yes
@@ -6,8 +7,7 @@ VIAL_ENABLE = yes
 VIALRGB_ENABLE = yes
 
 # RGB config
-RGBLIGHT_ENABLE = no # should be "no" if RGB_MATRIX_ENABLE is "yes"
-RGB_MATRIX_ENABLE = yes # CONFIG-ME "yes" or "no" depending if you have RGB matrix
+RGBLIGHT_ENABLE = no # should be "no" if RGB_MATRIX_ENABLE is "yes". Tergo Sofle was not tested with this. ToDo
 RGB_MATRIX_DRIVER=ws2812
 
 # Other functionalities

@@ -6,11 +6,11 @@ Consulte a [documentação do Tergo Sofle](https://github.com/TergoTeclados/Terg
 
 # Como modificar e compilar
 
-Este repositório é importado como submódulo para os [forks do firmware QMK disponibilizados pela Tergo](https://github.com/TergoTeclados/Tergo-Sofle-firmware). 
+Este repositório é importado como submódulo para os [forks do firmware QMK disponibilizados pela Tergo](https://github.com/TergoTeclados/vial-qmk-firmware). 
 
 Assim, caso queira modificá-lo e compilá-lo, faça um `git clone` de algum dos firmwares disponibilizados e baixe os submódulos usando `qmk git-submodules` pelo [terminal QMK MSYS](https://msys.qmk.fm/). Assim, este repositório será baixado junto.
 
-Para mais detalhes consulte a [documentação do Tergo Sofle](https://github.com/TergoTeclados/Tergo-Sofle-Documentation)
+Para mais detalhes consulte a [documentação de modificação de software do Tergo Sofle](https://github.com/TergoTeclados/Tergo-Sofle-Documentation/blob/main/MANUAL_FIRMWARE_MODDING.md)
 
 # Como importar isto para meu próprio fork do QMK
 
