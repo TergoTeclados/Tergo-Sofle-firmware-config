@@ -1,10 +1,10 @@
-OLED_ENABLE = no # CONFIG-ME "yes" or "no" depending if you have oleds
-RGB_MATRIX_ENABLE = no # CONFIG-ME "yes" or "no" depending if you have RGB
+OLED_ENABLE = yes # CONFIG-ME "yes" or "no" depending if you have oleds
+RGB_MATRIX_ENABLE = yes # CONFIG-ME "yes" or "no" depending if you have RGB
+VIALRGB_ENABLE = yes # CONFIG-ME "yes" or "no" depending if you have RGB
 
 VIA_ENABLE = yes
 VIAL_ENABLE = yes
 #VIAL_INSECURE = yes #https://get.vial.today/docs/security.html#vial-security-notes
-VIALRGB_ENABLE = yes
 
 # RGB config
 RGBLIGHT_ENABLE = no # should be "no" if RGB_MATRIX_ENABLE is "yes". Tergo Sofle was not tested with this. ToDo

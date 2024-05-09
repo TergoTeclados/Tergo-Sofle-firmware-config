@@ -51,6 +51,19 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
 // Keymaps for each layer. The visualization should be easier in Vial interface.
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
+#if defined(KEYBOARD_tergo_sofle_rev1)
+
+[_BASIC] = LAYOUT(
+  KC_ESC,   KC_1,   KC_2,    KC_3,    KC_4,    KC_5,                                KC_6,    KC_7,    KC_8,    KC_9,    KC_0,     KC_MINS,
+  KC_TAB,   KC_Q,   KC_W,    KC_E,    KC_R,    KC_T,                                KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,     KC_BSPC,
+  KC_LSFT,  KC_A,   KC_S,    KC_D,    KC_F,    KC_G,                                KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN,  KC_QUOT,
+  KC_LCTL,  KC_Z,   KC_X,    KC_C,    KC_V,    KC_B, MO(_MEDIA),       MO(_ADJUST), KC_N,    KC_M,    KC_COMM, KC_DOT,   KC_SLSH,  KC_RSFT,
+            MO(_NUMPAD), KC_LGUI, KC_LALT, KC_SPC, MO(_SYMB_AND_NAV),  KC_ENT, KC_BSPC, KC_DEL, KC_RGUI, KC_RCTL
+),
+
+#else
+
+// Used by the prototype (rev0)
 [_BASIC] = LAYOUT(
   KC_ESC,   KC_1,   KC_2,    KC_3,    KC_4,    KC_5,                                KC_6,    KC_7,    KC_8,    KC_9,    KC_0,     LT(_ADJUST, KC_MINS),
   KC_TAB,   KC_Q,   KC_W,    KC_E,    KC_R,    KC_T,                                KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,     KC_BSPC,
@@ -58,6 +71,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_LCTL,  KC_Z,   KC_X,    KC_C,    KC_V,    KC_B, MO(_MEDIA),       MO(_ADJUST), KC_N,    KC_M,    KC_COMM, KC_DOT,   KC_SLSH,  KC_RSFT,
             MO(_NUMPAD), KC_LGUI, KC_LALT, KC_SPC, MO(_SYMB_AND_NAV),  KC_ENT, KC_BSPC, KC_DEL, KC_RGUI, KC_RCTL
 ),
+
+#endif
 
 [_ADEPT] = LAYOUT(
   _______,   _______,   _______,    _______,    _______,    _______,                     _______,    _______,    _______,    _______,    _______,  _______,
@@ -112,7 +127,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   _______,   _______,   _______,    _______,    _______,    _______,                _______,    _______,    _______,    _______,    _______,  _______,
   _______,   XXXXXXX,   XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,                KC_WH_U,    XXXXXXX,    KC_MS_U,    XXXXXXX,    XXXXXXX,  _______,
   _______,  KC_LGUI,    KC_LALT,  KC_LCTL,  KC_LSFT,    XXXXXXX,                    KC_WH_D,    KC_MS_L,    KC_MS_D,    KC_MS_R,    XXXXXXX,  _______,
-  _______,  LCTL(KC_Z),    LCTL(KC_X),     LCTL(KC_C),    LCTL(KC_V), _______,      XXXXXXX,     XXXXXXX,XXXXXXX,    XXXXXXX, XXXXXXX,  _______, _______,  _______,
+  _______,  LCTL(KC_Z),    LCTL(KC_X),     LCTL(KC_C),    LCTL(KC_V), XXXXXXX,      _______,     XXXXXXX,XXXXXXX,    XXXXXXX, XXXXXXX,  XXXXXXX, XXXXXXX,  _______,
                              _______ , _______, _______, _______, _______,              KC_BTN2, KC_BTN1, KC_BTN3, _______, _______
 )
 };

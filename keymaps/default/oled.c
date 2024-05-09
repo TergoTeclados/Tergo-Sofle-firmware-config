@@ -23,6 +23,8 @@
 #define TERGO_ENABLE_ANIMATION
 //#define TERGO_SCREEN_FOR_NUMPAD // Não sendo usado pois mostro isso na tela principal já
 
+#ifdef OLED_ENABLE
+
 const uint16_t TIME_BETWEEN_FRAMES_ANIMATION = OLED_UPDATE_INTERVAL; // Deve ser 50ms para teclados split por default
 const uint16_t TIME_BETWEEN_LOOPING_ANIMATION = 6000;
 
@@ -31,8 +33,6 @@ uint16_t time_between_frames = 0;
 uint16_t key_timer;
 bool timer_initialized = false;
 bool refresh_logo_right_away = false;
-
-#ifdef OLED_ENABLE
 
 extern bool is_oled_enabled;
 
