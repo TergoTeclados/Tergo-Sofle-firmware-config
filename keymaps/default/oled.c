@@ -85,7 +85,7 @@ void render_logo(void) {
 void render_adjust(uint8_t col, uint8_t line) {
     oled_set_cursor(col, line);
 
-    oled_write_ln_P(PSTR("v1.0 "), false);
+    oled_write_ln_P(PSTR("v1.1 "), false);
 
     line += 2;
     oled_set_cursor(col, line);
