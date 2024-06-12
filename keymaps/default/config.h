@@ -46,9 +46,9 @@
 
 #define RGB_MATRIX_TIMEOUT 180000 //ms
 #define RGB_DISABLE_WHEN_USB_SUSPENDED
-#define RGB_MATRIX_MAXIMUM_BRIGHTNESS 100 // ATENÇÃO: não aumentar, sujeito a perda de garantia. Valores maiores não são seguros para a placa controladora.
+#define RGB_MATRIX_MAXIMUM_BRIGHTNESS 127 // ATENÇÃO: não aumentar, sujeito a perda de garantia. Valores maiores não são seguros para a placa controladora.
 #define RGB_MATRIX_DEFAULT_SPD 47
-#define RGB_MATRIX_DEFAULT_MODE RGB_MATRIX_CYCLE_UP_DOWN
+#define RGB_MATRIX_DEFAULT_MODE RGB_MATRIX_SOLID_COLOR
 
 // Mouse key speed and acceleration.
 #undef MOUSEKEY_DELAY
