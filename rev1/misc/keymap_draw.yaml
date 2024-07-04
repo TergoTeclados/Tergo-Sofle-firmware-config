@@ -1,8 +1,8 @@
 layout: {qmk_keyboard: splitkb/aurora/sofle_v2/rev1, qmk_layout: LAYOUT}
 layers:
-  L0 Base: [ESC, '1 !', '2 @', '3 #', '4 $', '5 %', '6 ^', '7 &', '8 *', '9 (', '0 )', '- _', TAB, Q, W, E, R, T, Y, U, I, O, P, BSPC, LSFT, A, S, D, F, G, H, J, K, L, '; :', ''' "', LCTL, Z, X, C,
+  Base: [ESC, '1 !', '2 @', '3 #', '4 $', '5 %', '6 ^', '7 &', '8 *', '9 (', '0 )', '- _', TAB, Q, W, E, R, T, Y, U, I, O, P, BSPC, LSFT, A, S, D, F, G, H, J, K, L, '; :', ''' "', LCTL, Z, X, C,
     V, B, L4, L3, N, M, ', <', '. >', '/ ?', RSFT, L5, LGUI, LALT, SPC, L2, ENT, BSPC, DEL, RGUI, RCTL]
-  L1 Base (Modo Adept):
+  Base (Modo Adept):
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
@@ -56,14 +56,14 @@ layers:
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
-  - {h: 'L6 Mouse', t: SPC}
-  - {h: 'L2 Symb', t: TAB}
+  - {h: 'L Mouse', t: SPC}
+  - {h: 'L Symb', t: TAB}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
-  L2 Símbolos e Navegação:
+  Símbolos e Navegação:
   - {t: ▽, type: trans}
   - F1
   - F2
@@ -78,8 +78,8 @@ layers:
   - F11
   - {t: ▽, type: trans}
   - '`'
+  - '^'
   - '+'
-  - '-'
   - '{'
   - '}'
   - 'PGUP'
@@ -91,19 +91,19 @@ layers:
   - {t: ▽, type: trans}
   - '~'
   - '='
-  - '_'
+  - '-'
   - '('
   - ')'
   - 'PGDN'
   - 'LEFT'
   - 'DOWN'
-  - 'RGHT'
+  - 'RIGHT'
   - 'PSCR'
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
   - ''
-  - \
+  - {t: ▽, type: trans}
+  - '\'
   - '|'
+  - '_'
   - '['
   - ']'
   - {t: ▽, type: trans}
@@ -113,7 +113,7 @@ layers:
   - ESC
   - 'LCTL +RGHT'
   - PAUSE
-  - {t: ▽, type: trans}
+  - ''
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
@@ -124,7 +124,7 @@ layers:
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
-  L3 Ajustes:
+  Ajustes:
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
@@ -163,10 +163,10 @@ layers:
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - ''
-  - ''
-  - ''
-  - ''
-  - 'Mode Basic/ Adept'
+  - 'Base Layer 0'
+  - 'Base Layer 1'
+  - 'Base Layer 2'
+  - 'Show Layer Number'
   - {t: ▽, type: trans}
   - {type: held}
   - ''
@@ -185,7 +185,7 @@ layers:
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
-  L4 Mídia:
+  Mídia:
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
@@ -246,7 +246,7 @@ layers:
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
-  L5 Teclado Numérico:
+  Teclado Numérico:
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
@@ -307,7 +307,7 @@ layers:
   - '0'
   - '0'
   - '.'
-  L6 Simulador de Mouse:
+  Simulador de Mouse:
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}

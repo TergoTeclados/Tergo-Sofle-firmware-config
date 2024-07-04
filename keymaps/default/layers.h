@@ -19,6 +19,7 @@
 enum sofle_layers {
     _BASIC,
     _ADEPT,
+    _CUSTOM,
     _SYMB_AND_NAV,
     _ADJUST,
     _MEDIA,

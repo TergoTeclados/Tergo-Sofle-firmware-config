@@ -31,7 +31,8 @@ enum custom_keycodes {
     KC_TG_CUSTOM = CUSTOM_KC_START_VALUE,
     KC_TG_OLED,
     KC_OLED_BRIGHTNESS_INC,
-    KC_OLED_BRIGHTNESS_DEC
+    KC_OLED_BRIGHTNESS_DEC,
+    KC_TEXT_TYPE
 };
 
 #ifdef ENCODER_MAP_ENABLE
@@ -82,11 +83,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                  _______ , _______, _______, LT(_MOUSE, KC_SPC), LT(_SYMB_AND_NAV, KC_TAB),        _______, _______, _______, _______, _______
 ),
 
+[_CUSTOM] = LAYOUT(
+  KC_ESC,   KC_1,   KC_2,    KC_3,    KC_4,    KC_5,                                KC_6,    KC_7,    KC_8,    KC_9,    KC_0,     KC_MINS,
+  KC_TAB,   KC_Q,   KC_W,    KC_E,    KC_R,    KC_T,                                KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,     KC_BSPC,
+  KC_LSFT,  KC_A,   KC_S,    KC_D,    KC_F,    KC_G,                                KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN,  KC_QUOT,
+  KC_LCTL,  KC_Z,   KC_X,    KC_C,    KC_V,    KC_B, MO(_MEDIA),       MO(_ADJUST), KC_N,    KC_M,    KC_COMM, KC_DOT,   KC_SLSH,  KC_RSFT,
+            MO(_NUMPAD), KC_LGUI, KC_LALT, KC_SPC, MO(_SYMB_AND_NAV),  KC_ENT, KC_BSPC, KC_DEL, KC_RGUI, KC_RCTL
+),
+
 [_SYMB_AND_NAV] = LAYOUT(
   _______,   KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                          KC_F6,   KC_F7,   KC_F8,   KC_F9,  KC_F10,  KC_F11,
-  _______,    KC_GRV,    KC_PLUS,    KC_MINS,    KC_LCBR,    KC_RCBR,            KC_PGUP, KC_HOME,   KC_UP, KC_END, KC_INS,  KC_F12,
-  _______, (KC_TILD),   (KC_EQUAL), (KC_UNDS),  (KC_LPRN), (KC_RPRN),            KC_PGDN,  KC_LEFT, KC_DOWN, KC_RGHT,  KC_PSCR, _______,
-  _______,  XXXXXXX, KC_BSLS, KC_PIPE, KC_LBRC, KC_RBRC, _______,       _______, KC_CAPS, LCTL(KC_LEFT), KC_ESC, LCTL(KC_RGHT), KC_BRK, _______,
+  _______,    KC_GRV,  KC_CIRCUMFLEX,  KC_PLUS,    KC_LCBR,    KC_RCBR,            KC_PGUP, KC_HOME,   KC_UP, KC_END, KC_INS,  KC_F12,
+  _______,  KC_TILD,   KC_EQUAL, KC_MINS,  KC_LPRN, KC_RPRN,                     KC_PGDN,  KC_LEFT, KC_DOWN, KC_RGHT,  KC_PSCR, XXXXXXX,
+  _______,  KC_BSLS, KC_PIPE, KC_UNDS, KC_LBRC, KC_RBRC, _______,       _______, KC_CAPS, LCTL(KC_LEFT), KC_ESC, LCTL(KC_RGHT), KC_BRK, XXXXXXX,
                        _______, _______, _______, _______, _______,       _______, _______, _______, _______, _______
 ),
 
@@ -103,7 +112,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   _______, _______ , _______ , _______ , _______ , _______,                           _______,  _______  , _______,  _______ ,  _______ , _______,
   RGB_SPI,  RGB_VAI,  RGB_SAI,   RGB_HUI,  RGB_MOD, RGB_TOG,                        XXXXXXX, XXXXXXX,   XXXXXXX, XXXXXXX, XXXXXXX, _______,
   RGB_SPD, RGB_VAD,  RGB_SAD,  RGB_HUD,  RGB_RMOD, KC_TG_OLED,                       XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX, _______,
-  _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_TG_CUSTOM,  _______,       _______,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,   XXXXXXX, _______,
+  _______, XXXXXXX, DF(_BASIC), DF(_ADEPT), DF(_CUSTOM), KC_TEXT_TYPE,  _______,       _______,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,   XXXXXXX, _______,
                          _______, _______, _______, _______, _______,       _______, _______, _______, _______, _______
 ),
 
@@ -137,6 +146,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 bool     is_oled_enabled = true, is_oled_locked = false;
 uint32_t oled_timer                             = 0;
 uint8_t temp_oled_brightness = OLED_BRIGHTNESS;
+
+bool print_layer_number_instead_of_text = false;
 
 void oled_timer_reset(void) {
     oled_timer = timer_read32();
@@ -174,6 +185,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         #ifdef PERSIST_DEFAULT_LAYER_TOGGLE
         set_single_persistent_default_layer(target);
         #endif
+      }
+      return false;
+    
+    case KC_TEXT_TYPE:
+      if (record->event.pressed) {
+        print_layer_number_instead_of_text = !print_layer_number_instead_of_text; // Toggles
       }
       return false;
 

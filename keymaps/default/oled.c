@@ -21,12 +21,11 @@
 #include "layers.h"
 
 #define TERGO_ENABLE_ANIMATION
-//#define TERGO_SCREEN_FOR_NUMPAD // Não sendo usado pois mostro isso na tela principal já
 
 #ifdef OLED_ENABLE
 
 const uint16_t TIME_BETWEEN_FRAMES_ANIMATION = OLED_UPDATE_INTERVAL; // Deve ser 50ms para teclados split por default
-const uint16_t TIME_BETWEEN_LOOPING_ANIMATION = 6000;
+const uint16_t TIME_BETWEEN_LOOPING_ANIMATION = 8000;
 
 uint8_t frame_count = 1;
 uint16_t time_between_frames = 0;
@@ -35,6 +34,7 @@ bool timer_initialized = false;
 bool refresh_logo_right_away = false;
 
 extern bool is_oled_enabled;
+extern bool print_layer_number_instead_of_text;
 
 void suspend_power_down_user(void) {
     oled_off();
@@ -85,7 +85,7 @@ void render_logo(void) {
 void render_adjust(uint8_t col, uint8_t line) {
     oled_set_cursor(col, line);
 
-    oled_write_ln_P(PSTR("v1.1 "), false);
+    oled_write_ln_P(PSTR("v1.2 "), false);
 
     line += 2;
     oled_set_cursor(col, line);
@@ -146,56 +146,85 @@ void render_adjust(uint8_t col, uint8_t line) {
 }
 
 
+char buffer[9];
+
+static void print_layer_number(uint8_t layer) {
+    // It's not the prettiest way to do this, but it's the simplest
+
+    if(layer >= 10) {
+        snprintf(buffer, sizeof(buffer), "Lyr%d\n", layer);
+    }
+    else {
+        snprintf(buffer, sizeof(buffer), "Lyr %d\n", layer);
+    }
+
+    oled_write(buffer, false); // Write the concatenated string to the OLED
+}
+
+
 static void print_status_narrow(void) {
     // Print current mode
     oled_write_ln_P(PSTR("Tergo"), false);
     oled_write_ln_P(PSTR(""), false);
 
     oled_write_ln_P(PSTR("MODE "), false);
-    switch (get_highest_layer(default_layer_state)) {
-        case _BASIC:
-            oled_write_ln_P(PSTR("Basic"), false);
-            break;
-        case _ADEPT:
-            oled_write_ln_P(PSTR("Adept"), false);
-            break;
-        default:
-            oled_write_ln_P(PSTR("Other"), false);
-            break;
+
+    if(print_layer_number_instead_of_text == true) {
+        print_layer_number(get_highest_layer(default_layer_state));
+    }
+    else {
+        switch (get_highest_layer(default_layer_state)) {
+            case _BASIC:
+                oled_write_ln_P(PSTR("Basic"), false);
+                break;
+            case _ADEPT:
+                oled_write_ln_P(PSTR("Adept"), false);
+                break;
+            default:
+                oled_write_ln_P(PSTR("Other"), false);
+                break;
+        }
     }
     oled_write_P(PSTR("\n"), false);
+
     // Print current layer
     oled_write_ln_P(PSTR("LAYER"), false);
-    switch (get_highest_layer(layer_state)) {
-        case _BASIC:
-            oled_write_ln_P(PSTR("Base "), false);
-            break;
-        case _ADEPT:
-            oled_write_ln_P(PSTR("Base "), false);
-            break;
-        case _SYMB_AND_NAV:
-            oled_write_ln_P(PSTR("SymNv"), false);
-            break;
-        case _ADJUST:
-            oled_write_ln_P(PSTR("Confg"), false);
-            break;
-        case _MEDIA:
-            oled_write_ln_P(PSTR("Media"), false);
-            break;
-        case _NUMPAD:
-            oled_write_ln_P(PSTR("NumPd"), false);
-            break;
-        case _MOUSE:
-            oled_write_ln_P(PSTR("Mouse"), false);
-            break;
-        default:
-            // oled_write_P(PSTR("Lyr"), false);
-            // oled_advance_char();
-            // oled_write(get_u8_str(get_highest_layer(layer_state), ' '), false);
-            // ToDo Tergo: mostrar numero da layer
-            oled_write_ln_P(PSTR("Other"), false);
-            break;
+
+    if(print_layer_number_instead_of_text == true) {
+        print_layer_number(get_highest_layer(layer_state));
     }
+    else {
+        switch (get_highest_layer(layer_state)) {
+            case _BASIC:
+                oled_write_ln_P(PSTR("Base "), false);
+                break;
+            case _ADEPT:
+                oled_write_ln_P(PSTR("Base "), false);
+                break;
+            case _CUSTOM:
+                oled_write_ln_P(PSTR("Base "), false);
+                break;
+            case _SYMB_AND_NAV:
+                oled_write_ln_P(PSTR("SymNv"), false);
+                break;
+            case _ADJUST:
+                oled_write_ln_P(PSTR("Confg"), false);
+                break;
+            case _MEDIA:
+                oled_write_ln_P(PSTR("Media"), false);
+                break;
+            case _NUMPAD:
+                oled_write_ln_P(PSTR("NumPd"), false);
+                break;
+            case _MOUSE:
+                oled_write_ln_P(PSTR("Mouse"), false);
+                break;
+            default:
+                print_layer_number(get_highest_layer(layer_state));
+                break;
+        }
+    }
+
     oled_write_ln_P(PSTR(""), false);
     led_t led_usb_state = host_keyboard_led_state();
 
