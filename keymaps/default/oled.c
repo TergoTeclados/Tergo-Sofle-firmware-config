@@ -80,12 +80,23 @@ void render_logo(void) {
     #endif
 }
 
+#define PERCENTAGE_STR_SIZE 5
+
+char percentage_str[PERCENTAGE_STR_SIZE];
+
+void print_percentage_str(uint8_t value, uint8_t max_value) {
+    uint8_t percentage = (value * 100) / max_value;
+
+    snprintf(percentage_str, PERCENTAGE_STR_SIZE, "%3d%%", percentage);
+    oled_write(percentage_str, false);
+    //oled_write_P(PSTR("%"), false);
+}
 
 // Showed if you have RGB and when in _ADJUST layer
 void render_adjust(uint8_t col, uint8_t line) {
     oled_set_cursor(col, line);
 
-    oled_write_ln_P(PSTR("v1.2 "), false);
+    oled_write_ln_P(PSTR("v1.03"), false);
 
     line += 2;
     oled_set_cursor(col, line);
@@ -116,8 +127,7 @@ void render_adjust(uint8_t col, uint8_t line) {
     oled_set_cursor(col, line);
 
     oled_write_P(PSTR("B"), false);
-    oled_advance_char();
-    oled_write(get_u8_str(hsv.v, ' '), false);
+    print_percentage_str(hsv.v, RGB_MATRIX_MAXIMUM_BRIGHTNESS);
     line += 2;
     oled_set_cursor(col, line);
 
@@ -128,8 +138,7 @@ void render_adjust(uint8_t col, uint8_t line) {
     oled_set_cursor(col, line);
 
     oled_write_P(PSTR("S"), false);
-    oled_advance_char();
-    oled_write(get_u8_str(hsv.s, ' '), false);
+    print_percentage_str(hsv.s, 255);
     line += 2;
     oled_set_cursor(col, line);
 
@@ -140,8 +149,7 @@ void render_adjust(uint8_t col, uint8_t line) {
     oled_set_cursor(col, line);
 
     oled_write_P(PSTR("P"), false);
-    oled_advance_char();
-    oled_write(get_u8_str(speed, ' '), false);
+    print_percentage_str(speed, 255);
     #endif
 }
 
@@ -149,16 +157,8 @@ void render_adjust(uint8_t col, uint8_t line) {
 char buffer[9];
 
 static void print_layer_number(uint8_t layer) {
-    // It's not the prettiest way to do this, but it's the simplest
-
-    if(layer >= 10) {
-        snprintf(buffer, sizeof(buffer), "Lyr%d\n", layer);
-    }
-    else {
-        snprintf(buffer, sizeof(buffer), "Lyr %d\n", layer);
-    }
-
-    oled_write(buffer, false); // Write the concatenated string to the OLED
+    snprintf(buffer, sizeof(buffer), "Lyr%2d\n", layer);
+    oled_write(buffer, false);
 }
 
 

@@ -16,6 +16,8 @@
 
 #pragma once
 
+#define SELECT_SOFT_SERIAL_SPEED 2
+
 #ifdef VIAL_ENABLE
 // Vial Support
 
@@ -44,10 +46,10 @@
 #define OLED_TIMEOUT 60000 //ms
 #define OLED_BRIGHTNESS 0
 
-#define RGB_MATRIX_TIMEOUT 180000 //ms
+#define RGB_MATRIX_TIMEOUT 120000 //ms
 #define RGB_DISABLE_WHEN_USB_SUSPENDED
 #define RGB_MATRIX_MAXIMUM_BRIGHTNESS 127 // ATENÇÃO: não aumentar, sujeito a perda de garantia. Valores maiores não são seguros para a placa controladora.
-#define RGB_MATRIX_DEFAULT_SPD 47
+#define RGB_MATRIX_DEFAULT_SPD 128
 #define RGB_MATRIX_DEFAULT_MODE RGB_MATRIX_SOLID_COLOR
 
 // Mouse key speed and acceleration.
