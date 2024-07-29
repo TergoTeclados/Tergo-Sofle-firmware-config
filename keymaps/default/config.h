@@ -46,7 +46,7 @@
 #define OLED_TIMEOUT 60000 //ms
 #define OLED_BRIGHTNESS 0
 
-#define RGB_MATRIX_TIMEOUT 120000 //ms
+#define RGB_MATRIX_TIMEOUT 90000 //ms
 #define RGB_DISABLE_WHEN_USB_SUSPENDED
 #define RGB_MATRIX_MAXIMUM_BRIGHTNESS 127 // ATENÇÃO: não aumentar, sujeito a perda de garantia. Valores maiores não são seguros para a placa controladora.
 #define RGB_MATRIX_DEFAULT_SPD 128
