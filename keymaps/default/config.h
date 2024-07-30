@@ -16,7 +16,7 @@
 
 #pragma once
 
-#define SELECT_SOFT_SERIAL_SPEED 2
+#define SELECT_SOFT_SERIAL_SPEED 3
 
 #ifdef VIAL_ENABLE
 // Vial Support
