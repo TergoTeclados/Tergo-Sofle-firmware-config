@@ -187,14 +187,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         #endif
       }
       return false;
-    
+
+    #ifdef OLED_ENABLE
     case KC_TEXT_TYPE:
       if (record->event.pressed) {
         print_layer_number_instead_of_text = !print_layer_number_instead_of_text; // Toggles
       }
       return false;
-
-    #ifdef OLED_ENABLE
 
     #define OLED_MAX_BRIGHTNESS 255 // Default. Do not change
 
@@ -207,7 +206,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             }
       }
       return false;
-    
+
     // Only working for the main side of the keyboard
     case KC_OLED_BRIGHTNESS_INC:
         temp_oled_brightness = oled_get_brightness();
